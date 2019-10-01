@@ -654,20 +654,32 @@ int CopyTIM2Buffer(int sourcex, int sourcey, int destx, int desty, int rot)
 {
 	// TO DO: Implement this function (see slides)
 	switch (rot) {
-	case 0: //normal
+	case 0: //normal DONE
 		for (int i = 0; i < 32; i++)
 			for (int j = 0; j < 32; j++)
-			SetBufferPixel(destx+j, desty+i, GetPixel(sourcex+j, sourcey+i));
+				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + j, sourcey + i));
 		break;
-	case 1: //flip in X
+	case 1: //flip in X DONE
+		for (int i = 0; i < 32; i++)
+			for (int j = 0; j < 32; j++)
+				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + 32-j, sourcey + i));
 		break;
 	case 2: //rotate 90 degrees
+		for (int i = 0; i < 32; i++)
+			for (int j = 0; j < 32; j++)
+				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + i, sourcey + 32 - j));
 		break;
 	case 3: //flip in X and rotate 90 degrees
+		for (int i = 0; i < 32; i++)
+			for (int j = 0; j < 32; j++)
+				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + j, sourcey + 32 - i));
 		break;
 	case 4: //Rotate 180 degrees
 		break;
-	case 5: //Flip in Y
+	case 5: //Flip in Y DONE
+		for (int i = 0; i < 32; i++)
+			for (int j = 0; j < 32; j++)
+				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + 32 - j, sourcey + 32 - i));
 		break;
 	case 6: //Rotate 270 degrees
 		break;
@@ -688,8 +700,8 @@ int DrawSegments2Buffer(SEGMENT* pSegments, TIM_FILE* pTIMData)
 	// TO DO: Implement this function (see slides)
 	// Note the code below should copy the TIM at index "tileIndex" to the map grid square "mapIndex" 
 	// CopyTIM2Buffer(_TIMXPOS(tileIndex), _TIMYPOS(tileIndex), _MAPXPOS(mapIndex), _MAPYPOS(mapIndex), tileRot);
-	//for(int i = 0; i < 20; i++)
-		CopyTIM2Buffer(_TIMXPOS(9), _TIMYPOS(9), _MAPXPOS(0), _MAPYPOS(0), 0);
+	for(int i = 0; i < 8; i++)
+		CopyTIM2Buffer(_TIMXPOS(15), _TIMYPOS(15), _MAPXPOS(i), _MAPYPOS(i), i);
 	
 	return 0;
 }
