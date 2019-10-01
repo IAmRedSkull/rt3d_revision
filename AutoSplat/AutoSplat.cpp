@@ -664,7 +664,7 @@ int CopyTIM2Buffer(int sourcex, int sourcey, int destx, int desty, int rot)
 			for (int j = 0; j < 32; j++)
 				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + 32-j, sourcey + i));
 		break;
-	case 2: //rotate 90 degrees
+	case 2: //rotate 90 degrees DONE
 		for (int i = 0; i < 32; i++)
 			for (int j = 0; j < 32; j++)
 				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + i, sourcey + 32 - j));
@@ -672,7 +672,7 @@ int CopyTIM2Buffer(int sourcex, int sourcey, int destx, int desty, int rot)
 	case 3: //flip in X and rotate 90 degrees
 		for (int i = 0; i < 32; i++)
 			for (int j = 0; j < 32; j++)
-				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + j, sourcey + 32 - i));
+				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + 32 - i, sourcey + j));
 		break;
 	case 4: //Rotate 180 degrees
 		break;
