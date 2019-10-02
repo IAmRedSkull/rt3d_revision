@@ -662,28 +662,37 @@ int CopyTIM2Buffer(int sourcex, int sourcey, int destx, int desty, int rot)
 	case 1: //flip in X DONE
 		for (int i = 0; i < 32; i++)
 			for (int j = 0; j < 32; j++)
-				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + 32-j, sourcey + i));
+				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + 31-j, sourcey + i));
 		break;
 	case 2: //rotate 90 degrees DONE
 		for (int i = 0; i < 32; i++)
 			for (int j = 0; j < 32; j++)
-				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + i, sourcey + 32 - j));
+				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + i, sourcey + 31 - j));
 		break;
-	case 3: //flip in X and rotate 90 degrees
+	case 3: //flip in X and rotate 90 degrees DONE
 		for (int i = 0; i < 32; i++)
 			for (int j = 0; j < 32; j++)
-				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + 32 - i, sourcey + j));
+				SetBufferPixel(destx + j, desty + 31-i, GetPixel(sourcex + i, sourcey + 31 - j));
 		break;
-	case 4: //Rotate 180 degrees
+	case 4: //Rotate 180 degrees DONE
+	for (int i = 0; i < 32; i++)
+		for (int j = 0; j < 32; j++)
+			SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + 31-j, sourcey + 31-i));
 		break;
 	case 5: //Flip in Y DONE
 		for (int i = 0; i < 32; i++)
 			for (int j = 0; j < 32; j++)
-				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + 32 - j, sourcey + 32 - i));
+				SetBufferPixel(destx + 31-j, desty + i, GetPixel(sourcex + 31 - j, sourcey + 31 - i));
 		break;
-	case 6: //Rotate 270 degrees
+	case 6: //Rotate 270 degrees DONE
+		for (int i = 0; i < 32; i++)
+			for (int j = 0; j < 32; j++)
+				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + 31 - i, sourcey + j));
 		break;
 	case 7: //Rotate 270 degrees and flip in X
+	for (int i = 0; i < 32; i++)
+		for (int j = 0; j < 32; j++)
+			SetBufferPixel(destx + j, desty + 31 - i, GetPixel(sourcex + 31 - i, sourcey + j));
 		break;
 	}
 	return 0;
