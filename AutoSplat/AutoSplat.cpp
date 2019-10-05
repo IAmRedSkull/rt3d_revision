@@ -654,27 +654,27 @@ int CopyTIM2Buffer(int sourcex, int sourcey, int destx, int desty, int rot)
 {
 	// TO DO: Implement this function (see slides)
 	switch (rot) {
-	case 0: //normal DONE
+	case 0: //normal
 		for (int i = 0; i < 32; i++)
 			for (int j = 0; j < 32; j++)
 				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + j, sourcey + i));
 		break;
-	case 1: //flip in X DONE
+	case 1: //flip in X
 		for (int i = 0; i < 32; i++)
 			for (int j = 0; j < 32; j++)
 				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + 31-j, sourcey + i));
 		break;
-	case 2: //rotate 90 degrees DONE
+	case 2: //rotate 90 degrees
 		for (int i = 0; i < 32; i++)
 			for (int j = 0; j < 32; j++)
 				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + i, sourcey + 31 - j));
 		break;
-	case 3: //flip in X and rotate 90 degrees DONE
+	case 3: //flip in X and rotate 90 degrees
 		for (int i = 0; i < 32; i++)
 			for (int j = 0; j < 32; j++)
 				SetBufferPixel(destx + j, desty + 31-i, GetPixel(sourcex + i, sourcey + 31 - j));
 		break;
-	case 4: //Rotate 180 degrees DONE
+	case 4: //Rotate 180 degrees
 	for (int i = 0; i < 32; i++)
 		for (int j = 0; j < 32; j++)
 			SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + 31-j, sourcey + 31-i));
@@ -684,7 +684,7 @@ int CopyTIM2Buffer(int sourcex, int sourcey, int destx, int desty, int rot)
 			for (int j = 0; j < 32; j++)
 				SetBufferPixel(destx + 31-j, desty + i, GetPixel(sourcex + 31 - j, sourcey + 31 - i));
 		break;
-	case 6: //Rotate 270 degrees DONE
+	case 6: //Rotate 270 degrees
 		for (int i = 0; i < 32; i++)
 			for (int j = 0; j < 32; j++)
 				SetBufferPixel(destx + j, desty + i, GetPixel(sourcex + 31 - i, sourcey + j));
@@ -709,18 +709,6 @@ int DrawSegments2Buffer(SEGMENT* pSegments, TIM_FILE* pTIMData)
 	// TO DO: Implement this function (see slides)
 	// Note the code below should copy the TIM at index "tileIndex" to the map grid square "mapIndex" 
 	// CopyTIM2Buffer(_TIMXPOS(tileIndex), _TIMYPOS(tileIndex), _MAPXPOS(mapIndex), _MAPYPOS(mapIndex), tileRot);
-	/*for(int i = 0; i < 8; i++)
-		CopyTIM2Buffer(_TIMXPOS(15), _TIMYPOS(15), _MAPXPOS(i), _MAPYPOS(i), i);*/
-	
-	/*for (int i = 0; i < 2048; i++) {
-		CopyTIM2Buffer(_TIMXPOS(pSegments[i / 16].strTilePolyStruct[i % 16].cTileRef), _TIMYPOS(pSegments[i / 16].strTilePolyStruct[i % 16].cTileRef), _MAPXPOS(i), _MAPYPOS(i), pSegments[i / 16].strTilePolyStruct[i % 16].cRot);
-	}*/
-
-	/*for (int i = 0; i < 2048; i++) {
-		//for (int j = 0; j < 32; j++) {
-		CopyTIM2Buffer(_TIMXPOS(pSegments[i / 16].strTilePolyStruct[i % 16].cTileRef), _TIMYPOS(pSegments[i / 16].strTilePolyStruct[i % 16].cTileRef), _MAPXPOS(i), _MAPYPOS(i), pSegments[i / 16].strTilePolyStruct[i % 16].cRot);
-		//}
-	}*/
 	int index = 0;
 	for(int f = 0; f < 16; f++){
 		for(int k = 0; k < 16; k++){
